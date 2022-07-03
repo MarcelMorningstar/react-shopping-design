@@ -1,0 +1,25 @@
+.category {
+    padding: 60px 0;
+
+    .wrapper {
+        display: flex;
+        justify-content: center;
+
+        .products {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(200px, 382px));
+            justify-content: center;
+            width: max(80%, 400px);
+            column-gap: 32px;
+            row-gap: 32px;
+
+            h1 {
+                grid-column-start: 1;
+                grid-column-end: 4;
+                font-size: 42px;
+                font-weight: 400;
+                text-transform: capitalize;
+            }
+        }
+    }
+}

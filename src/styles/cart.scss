@@ -1,0 +1,51 @@
+.cart {
+    width: max(80%, 400px);
+    min-height: calc(100vh - 200px);
+    margin: 0 auto;
+    padding: 60px 0;
+
+    h1 {
+        margin: 0 0 42px 0;
+        font-size: 32px;
+        font-weight: 700;
+    }
+
+    .attributes {
+        margin: 16px 0 0 0;
+    }
+
+    div {
+        table {
+            margin: 32px 0 0 0;
+    
+            tr {
+                td {
+                    padding: 0 2px;
+                    font-size: 24px;
+    
+                    &:first-child {
+                        font-weight: 400;
+                    }
+                    
+                    &:not(:first-child) {
+                        font-weight: 700;
+                    }
+                }
+            }
+        }
+
+        button#order {
+            width: 279px;
+            height: 43px;
+            margin: 8px 0 0 2px;
+            color: var(--c-white);
+            font-size: 14px;
+            font-weight: 500;
+            background-color: var(--c-primary);
+            border: none;
+            cursor: pointer;
+        }
+    }
+
+    
+}
