@@ -5,7 +5,6 @@ import cart from '../icons/Empty Cart 2.svg';
 
 const Wrapper = styled.div`
   position: relative;
-  padding: 16px;
 
   &:hover {
     box-shadow: 0px 4px 35px rgba(168, 172, 176, 0.19);
@@ -17,19 +16,20 @@ const Wrapper = styled.div`
 `;
 
 const Card = styled.a`
+  display: block;
+  padding: 16px;
   color: var(--c-black);
   text-decoration: none;
   cursor: pointer;
 `;
 
 const Image = styled.div`
-  width: 100%;
+  min-height: 250px;
   margin: 0 0 16px 0;
   background-image: ${props => `url(${props.src})`};
-  background-size: cover;
+  background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
-  aspect-ratio: 1 / 1;
 `;
 
 const OutOfStock = styled.div`
@@ -37,7 +37,7 @@ const OutOfStock = styled.div`
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: 100%;
+  min-height: inherit;
   color: #8D8F9A;
   font-size: 24px;
   font-weight: 400;
@@ -135,10 +135,10 @@ export default class ProductCard extends React.Component {
           <Image src={this.props.image}>
             <OutOfStock inStock={this.props.inStock}>OUT OF STOCK</OutOfStock>
           </Image>
-          <Text>{this.props.name}</Text>
+          <Text>{this.props.brand + ' ' + this.props.name}</Text>
           <Price>{this.props.currency + this.props.price.toFixed(2)}</Price>
         </Card>
-        <Button className='btn' onClick={this.addCart} disabled={!this.props.inStock} ><object data={cart} aria-label='cart'></object></Button>
+        <Button className='btn' onClick={this.addCart} disabled={!this.props.inStock}><object data={cart} aria-label='cart'></object></Button>
       </Wrapper>
     )
   }

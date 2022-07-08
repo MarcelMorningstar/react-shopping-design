@@ -11,25 +11,60 @@ const Wrapper = styled.section`
 `;
 
 const Gallery = styled.section`
-  display: grid;
-  grid-template-columns: 80px repeat(5, 80px);
-  grid-template-rows: repeat(5, 80px);
-  gap: 30px;
+  display: flex;
+  flex-direction: row-reverse;
+  column-gap: 30px;
+`;
 
-  img:first-child {
-    grid-column-start: 2;
-    grid-column-end: 7;
-    grid-row-start: 1;
-    grid-row-end: 6;
-    aspect-ratio: 1 / 1;
-    max-height: 100%;
-    object-fit: cover;
+const Images = styled.div`
+  overflow-y: overlay;
+  display: flex;
+  flex-direction: column;
+  row-gap: 30px;
+  max-height: 400px;
+  padding-left: 10px;
+  direction: rtl;
+
+  &::-webkit-scrollbar {
+    width: 8px;
   }
 
-  img:not(:first-child) {
-    width: 80px;
-    height: 80px;
+  &::-webkit-scrollbar-track {
+    background-color: transparent;
   }
+
+  &::-webkit-scrollbar-thumb {
+    background: rgba(201, 201, 201, 0.6);
+    border-radius: 25px;
+    border: 0 transparent solid;
+    background-clip: padding-box;
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background: rgba(201, 201, 201, 0.75);
+    border: 0 transparent solid;
+    background-clip: padding-box;
+  }
+
+  &::-webkit-scrollbar-thumb:active {
+    background: rgba(201, 201, 201, 0.9);
+    border: 0 transparent solid;
+    background-clip: padding-box;
+  }
+`;
+
+const ImageButton = styled.input`
+  width: 80px;
+  height: 80px;
+  border: none;
+  cursor: pointer;
+  object-fit: contain;
+`;
+
+const Image = styled.img`
+  // width: 400px;
+  max-height: 400px;
+  object-fit: contain;
 `;
 
 const Info = styled.section`
@@ -58,14 +93,6 @@ const Price = styled.span`
   font-weight: 700;
 `;
 
-const ImageButton = styled.input`
-  width: 80px;
-  height: 80px;
-  border: none;
-  cursor: pointer;
-  object-fit: cover;
-`;
-
 const AddButton = styled.button`
   display: block;
   width: 100%;
@@ -81,19 +108,19 @@ const AddButton = styled.button`
 
 export default class Item extends React.Component {
   constructor(props) {
-      super(props)
-      this.state = {
-          img: this.props.images[0],
-          attribute: [],
-          setAttribute: (id, itemID, value) => {
-              for (let i = 0; i < this.state.attribute.length; i++) {
-                  if (this.state.attribute[i].id === id) {
-                      this.state.attribute[i].items.id = itemID;
-                      this.state.attribute[i].items.value = value;
-                  }
-              }
+    super(props)
+    this.state = {
+      img: this.props.images[0],
+      attribute: [],
+      setAttribute: (id, itemID, value) => {
+        for (let i = 0; i < this.state.attribute.length; i++) {
+          if (this.state.attribute[i].id === id) {
+            this.state.attribute[i].items.id = itemID;
+            this.state.attribute[i].items.value = value;
           }
+        }
       }
+    }
   }
 
   componentDidMount() {
@@ -124,16 +151,18 @@ export default class Item extends React.Component {
     return (
       <Wrapper>
         <Gallery>
-          <img src={this.state.img} alt=""/>
-          {
-            this.props.images.map((image, index) => 
-              <ImageButton type="image" key={index} src={image} onClick={this.changeImage} value={image} />
-            )
-          }
+          <Image src={this.state.img} alt=""/>
+          <Images>
+            {
+              this.props.images.map((image, index) => 
+                <ImageButton type="image" key={index} src={image} onClick={this.changeImage} value={image} />
+              )
+            }
+          </Images>
         </Gallery>
         <Info>
           <div style={{margin: '0 0 16px 0'}}>
-            <Title id='brand' weight={700}>{this.props.brand}</Title>
+            <Title id='brand' weight={600}>{this.props.brand}</Title>
             <Title id='name'>{this.props.name}</Title>
           </div>
           <Attributes attributes={this.props.attributes} attribute={null} handleAttribute={this.handleAttribute} height={45} margin={24} />
