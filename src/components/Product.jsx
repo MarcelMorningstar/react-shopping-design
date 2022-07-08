@@ -2,6 +2,7 @@ import React from 'react';
 import Context from '../Layouts/Layout';
 import Attributes from '../widgets/Attributes';
 import styled from 'styled-components';
+import { Interweave } from 'interweave';
 
 const Wrapper = styled.section`
   display: flex;
@@ -220,7 +221,7 @@ export default class Item extends React.Component {
               )}
             </Context.Consumer>
           </div>
-          <div id='description' dangerouslySetInnerHTML={{ __html: this.props.description }} />
+          <Interweave content={this.props.description} />
         </Info>
       </Wrapper>
     )
