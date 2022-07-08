@@ -165,7 +165,7 @@ export default class Navbar extends React.Component {
           </div>
           <div id='cart' className={this.state.cartOpen ? 'active' : ''} ref={this.cartRef}>
             <span onClick={this.handleCartDropdown}>
-              <div style={this.props.bag.quantity > 0 ? {display: 'flex'} : {display: 'none'}}>{this.props.bag.quantity}</div>
+              <div className={this.props.bag.quantity > 0 ? 'quantity active' : 'quantity'}>{this.props.bag.quantity}</div>
               <img src={cart} alt="cart" width={27} />
             </span>
             <div id='bag'>
@@ -181,7 +181,7 @@ export default class Navbar extends React.Component {
       
                             return (
                               <div className='product'>
-                                <div style={{width: '140px'}}>
+                                <div>
                                   <h2>{data.product.brand}</h2>
                                   <h2>{data.product.name}</h2>
                                   <span>{data.product.prices[this.props.bag.currency].currency.symbol + data.product.prices[this.props.bag.currency].amount.toFixed(2)}</span>
@@ -208,10 +208,10 @@ export default class Navbar extends React.Component {
                                     height={24} 
                                     margin={8} 
                                     size={14} 
-                                    weight={300} 
+                                    weight={400} 
                                   />
                                 </div>
-                                <div style={{display: 'flex', alignItems: 'center', paddingRight: '14px'}}>
+                                <div>
                                   <QuantityChanger 
                                     quantity={this.props.items[index].quantity} 
                                     removeQuantity={() => this.removeQuantity(index, data.product.prices[this.props.bag.currency].amount, item.product.attribute)} addQuantity={() => this.addQuantity(index, data.product.prices[this.props.bag.currency].amount, item.product.attribute)} 
@@ -249,7 +249,7 @@ export default class Navbar extends React.Component {
               </div>
             </div>
           </div>
-          <div id='overlay' style={this.state.cartOpen ? {display: 'block', height: document.body.scrollHeight - 80 + 'px'} : {display: 'none'}}></div>
+          <div id='overlay' className={this.state.cartOpen ? 'active' : ''}></div>
         </div>
       </nav>
     )

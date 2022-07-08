@@ -29,6 +29,15 @@ const Cart = styled.section`
     height: 1px;
     background-color: #E5E5E5;
   }
+
+  > div:first-child {
+    width: 300px;
+  }
+
+  > div:last-child {
+    display: flex; 
+    align-items: center;
+  }
 `;
 
 const Title = styled.h2`
@@ -83,13 +92,13 @@ export default class Item extends React.Component {
   render() {
     return (
       <Cart>
-        <div style={{width: '300px'}}>
-          <Title weight={700}>{this.props.brand}</Title>
+        <div>
+          <Title weight={600}>{this.props.brand}</Title>
           <Title>{this.props.name}</Title>
           <Price>{this.props.currency + this.props.price}</Price>
           <Attributes attributes={this.props.attributes} attribute={this.props.attribute} handleAttribute={this.handleAttribute} height={45} margin={24} />
         </div>
-        <div style={{display: 'flex', alignItems: 'center'}}>
+        <div>
           <QuantityChanger quantity={this.props.quantity} removeQuantity={this.removeQuantity} addQuantity={this.addQuantity} height={288} size={45} fontSize={32} />
           <Carousel images={this.props.images} />
         </div>

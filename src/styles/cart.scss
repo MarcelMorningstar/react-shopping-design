@@ -31,6 +31,12 @@
                         font-weight: 700;
                     }
                 }
+
+                &:last-child {
+                    td:first-child {
+                        font-weight: 500;
+                    }
+                }
             }
         }
 

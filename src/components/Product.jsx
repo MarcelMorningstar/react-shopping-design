@@ -63,7 +63,6 @@ const ImageButton = styled.input`
 `;
 
 const Image = styled.img`
-  // width: 400px;
   max-height: 400px;
   object-fit: contain;
 `;
@@ -71,6 +70,7 @@ const Image = styled.img`
 const Info = styled.section`
   div {
     width: 300px;
+    margin: 0 0 16px 0;
   }
 `;
 
@@ -162,7 +162,7 @@ export default class Item extends React.Component {
           </Images>
         </Gallery>
         <Info>
-          <div style={{margin: '0 0 16px 0'}}>
+          <div>
             <Title id='brand' weight={600}>{this.props.brand}</Title>
             <Title id='name'>{this.props.name}</Title>
           </div>

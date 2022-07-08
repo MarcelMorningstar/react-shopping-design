@@ -1,6 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
 
+const Wrapper = styled.div`
+  position: absolute;
+  top: 25%; 
+  left: 50%;
+`;
+
 const Loader = styled.div`
   position: relative;
   left: -50%;
@@ -20,9 +26,9 @@ const Loader = styled.div`
 export default class Loading extends React.Component {
   render() {
     return (
-      <div style={{ position: 'absolute', top: '25%', left: '50%' }}>
+      <Wrapper>
         <Loader />
-      </div>
+      </Wrapper>
     )
   }
 }

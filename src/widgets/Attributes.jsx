@@ -20,7 +20,7 @@ const Label = styled.label`
 export default class Attributes extends React.Component {
   render() {
     return (
-      <div id='attributes' className='attributes'> 
+      <div className='attributes'> 
         {
           this.props.attributes.map((attribute, index) => {
             if (attribute.type === 'swatch') {

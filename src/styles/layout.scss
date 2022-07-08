@@ -25,7 +25,7 @@ nav {
                     height: inherit;
                     padding: 0 8px;
                     font-size: 1em;
-                    font-weight: 700;
+                    font-weight: 600;
                     background-color: transparent;
                     border: none;
                     text-transform: uppercase;
@@ -74,6 +74,7 @@ nav {
                         width: 100%;
                         height: 36px;
                         padding: 0;
+                        font-weight: 500;
                         background-color: transparent;
                         border: none;
                         cursor: pointer;
@@ -98,8 +99,8 @@ nav {
                     position: relative;
                     cursor: pointer;
 
-                    > div {
-                        display: flex;
+                    > div.quantity {
+                        display: none;
                         justify-content: center;
                         align-items: center;
                         position: absolute;
@@ -111,6 +112,10 @@ nav {
                         font-size: 12px;
                         background-color: var(--c-black);
                         border-radius: 50%;
+
+                        &.active {
+                            display: flex;
+                        }
                     }
                 }
 
@@ -158,6 +163,7 @@ nav {
                                 width: 50%;
                                 line-height : 43px;
                                 font-size: 14px;
+                                font-weight: 600;
                                 text-align: center;
                                 text-decoration: none;
 
@@ -186,19 +192,30 @@ nav {
                                 justify-content: space-between;
                                 padding: 16px 0;
 
-                                h2 {
-                                    line-height: 21px;
-                                    font-size: 16px;
-                                    font-weight: 300;
+                                > div:first-child {
+                                    width: 140px;
+
+                                    h2 {
+                                        line-height: 21px;
+                                        font-size: 16px;
+                                        font-weight: 300;
+                                    }
+    
+                                    span {
+                                        line-height: 32px;
+                                        font-weight: 500;
+                                    }
                                 }
 
-                                span {
-                                    line-height: 32px;
-                                }
+                                > div:last-child {
+                                    display: flex;
+                                    align-items: center;
+                                    padding-right: 14px;
 
-                                img {
-                                    width: 121px;
-                                    aspect-ratio: 1 / 1.2;
+                                    img {
+                                        width: 121px;
+                                        aspect-ratio: 1 / 1.2;
+                                    }
                                 }
                             }
 
@@ -229,29 +246,6 @@ nav {
                                 background-clip: padding-box;
                             }
                         }
-
-                        // > div {
-                        //     position: relative;
-                        //     display: flex;
-                        //     flex-direction: row;
-                        //     justify-content: space-between;
-                        //     padding: 16px 0;
-
-                        //     div {
-                        //         h2 {
-                        //             font-size: 16px;
-                        //             font-weight: 300;
-                        //             line-height: 24px;
-                        //         }
-
-                        //         span {
-                        //             display: block;
-                        //             margin: 4px 0 0 0;
-                        //             font-size: 24px;
-                        //             font-weight: 700;
-                        //         }
-                        //     }
-                        // }
                     }
                 }
 
@@ -262,13 +256,18 @@ nav {
 
             #overlay {
                 position: absolute;
-                width: 100%;
+                display: none;
                 top: 80px;
                 left: 0;
                 right: 0;
                 bottom: 0;
                 background-color: rgba(0,0,0,0.5);
                 z-index: 1;
+            
+                &.active {
+                    display: block;
+                    min-height: calc(100% - 80px);
+                }
             }
         }
     }
