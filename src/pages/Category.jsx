@@ -1,40 +1,10 @@
 import React from 'react';
 import Context from '../Layouts/Layout';
-import { gql } from "@apollo/client";
 import { Query } from "@apollo/client/react/components";
+import { GetProducts } from '../queries';
 import ProductCard from '../components/ProductCard';
 import Loading from '../Layouts/Loading';
 import '../styles/category.scss';
-
-const GetProducts = gql`
-  query GetProducts($category: String!) {
-    category(input: { title: $category }) {
-      products {
-        id
-        name
-        brand
-        gallery
-        attributes {
-          id
-          name
-          type
-          items {
-            id
-            value
-          }
-        }
-        prices {
-          currency {
-            label
-            symbol
-          }
-          amount
-        }
-        inStock
-      }
-    }
-  }
-`;
 
 export default class Category extends React.Component {
   static contextType = Context;

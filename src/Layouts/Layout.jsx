@@ -15,7 +15,6 @@ export class Layout extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      category: JSON.parse(window.localStorage.getItem('CATEGORY')) || 'all',
       items: JSON.parse(window.localStorage.getItem('BAG')) || [],
       bag: JSON.parse(window.localStorage.getItem('BAG_INFO')) || {
         "currency": "0",
@@ -61,17 +60,11 @@ export class Layout extends React.Component {
   componentDidMount() {
     window.localStorage.setItem('BAG', JSON.stringify(this.state.items));
     window.localStorage.setItem('BAG_INFO', JSON.stringify(this.state.bag));
-    window.localStorage.setItem('CATEGORY', JSON.stringify(this.state.category));
   }
 
   componentDidUpdate() {
     window.localStorage.setItem('BAG', JSON.stringify(this.state.items));
     window.localStorage.setItem('BAG_INFO', JSON.stringify(this.state.bag));
-    window.localStorage.setItem('CATEGORY', JSON.stringify(this.state.category));
-  }
-    
-  handleCategory = (e) => {
-    this.setState({ category: e.target.value });
   }
 
   handleCurrency = (e) => {
@@ -101,7 +94,6 @@ export class Layout extends React.Component {
           items={this.state.items}
           updateItem={this.state.updateItem}
           updateBag={this.state.updateBag}
-          handleCategory={this.handleCategory} 
           handleCurrency={this.handleCurrency} 
         />
 

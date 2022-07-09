@@ -1,38 +1,9 @@
 import React from 'react';
 import Context from '../Layouts/Layout';
-import { gql } from "@apollo/client";
 import { Query } from "@apollo/client/react/components";
+import { GetProduct } from '../queries';
 import Item from '../components/Product';
 import Loading from '../Layouts/Loading';
-
-const GetProduct = gql`
-  query GetProducts($id: String!) {
-    product(id: $id) {
-      id
-      name
-      brand
-      gallery
-      attributes {
-        id
-        name
-        type
-        items {
-          id
-          value
-        }
-      }
-      prices {
-        currency {
-          label
-          symbol
-        }
-        amount
-      }
-      description
-      inStock
-    }
-  }
-`;
 
 export default class Product extends React.Component {
   static contextType = Context;

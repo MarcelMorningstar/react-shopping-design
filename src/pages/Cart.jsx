@@ -1,46 +1,10 @@
 import React from 'react';
 import Context from '../Layouts/Layout';
-import { gql } from "@apollo/client";
 import { Query } from "@apollo/client/react/components";
+import { GetProduct, GetCurrencies } from '../queries';
 import Item from '../components/Cart';
 import Loading from '../Layouts/Loading';
 import '../styles/cart.scss';
-
-const GetProduct = gql`
-  query GetProduct($id: String!) {
-    product(id: $id) {
-      id
-      name
-      brand
-      gallery
-      attributes {
-        id
-        name
-        type
-        items {
-          id
-          value
-        }
-      }
-      prices {
-        currency {
-          label
-          symbol
-        }
-        amount
-      }
-    }
-  }
-`;
-
-const GetCurrencies = gql`
-  query GetCurrencies {
-    currencies {
-      label
-      symbol
-    }
-  }
-`;
 
 export default class Cart extends React.Component {
   render() {

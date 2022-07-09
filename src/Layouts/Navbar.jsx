@@ -1,56 +1,12 @@
 import React from 'react';
 import { Link, NavLink } from "react-router-dom";
-import { gql } from "@apollo/client";
 import { Query } from "@apollo/client/react/components";
+import { GetCategories, GetCurrencies, GetProduct } from "../queries";
 import Attributes from '../widgets/Attributes';
 import QuantityChanger from '../widgets/QuantityChanger';
 import logo from '../icons/logo.svg';
 import cart from '../icons/Empty Cart.svg';
 import currency from '../icons/$.svg';
-
-const GetProduct = gql`
-  query GetProduct($id: String!) {
-    product(id: $id) {
-      id
-      name
-      brand
-      gallery
-      attributes {
-        id
-        name
-        type
-        items {
-          id
-          value
-        }
-      }
-      prices {
-        currency {
-          label
-          symbol
-        }
-        amount
-      }
-    }
-  }
-`;
-
-const GetCategories = gql`
-    query GetCategories {
-        categories {
-            name
-        }
-    }
-`;
-
-const GetCurrencies = gql`
-    query GetCurrencies {
-        currencies {
-            label
-            symbol
-        }
-    }
-`;
 
 export default class Navbar extends React.Component {
   constructor(props) {
@@ -120,16 +76,7 @@ export default class Navbar extends React.Component {
               
               return (
                 data.categories.map(({ name }) => 
-                  <NavLink to={name} activeclassname='active' key={name}>
-                    {name}
-                    {/* <button
-                      className={this.props.category === name ? 'active btn' : 'btn'}  
-                      value={name} 
-                      onClick={this.props.handleCategory} 
-                    >
-                      {name}
-                    </button> */}
-                  </NavLink>
+                  <NavLink to={name} activeclassname='active' key={name}>{name}</NavLink>
                 )
               );
             }}
