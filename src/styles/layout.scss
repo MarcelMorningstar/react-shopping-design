@@ -17,32 +17,31 @@ nav {
             align-items: center;
 
             a {
+                position: relative;
+                display: flex;
+                align-items: center;
                 height: 100%;
-                
-                button {
-                    position: relative;
-                    justify-content: flex-start;
-                    height: inherit;
-                    padding: 0 8px;
-                    font-size: 1em;
-                    font-weight: 600;
-                    background-color: transparent;
-                    border: none;
-                    text-transform: uppercase;
-                    cursor: pointer;
+                padding: 0 8px;
+                color: var(--c-black);
+                font-size: 1em;
+                font-weight: 600;
+                background-color: transparent;
+                border: none;
+                text-transform: uppercase;
+                text-decoration: none;
+                cursor: pointer;
 
-                    &:hover, &.active {
-                        color: var(--c-primary);
+                &:hover, &.active {
+                    color: var(--c-primary);
 
-                        &::after {
-                            content: '';
-                            position: absolute;
-                            bottom: 0;
-                            left: 0;
-                            height: 2px;
-                            width: 100%;
-                            background-color: var(--c-primary);
-                        }
+                    &::after {
+                        content: '';
+                        position: absolute;
+                        bottom: 0;
+                        left: 0;
+                        height: 2px;
+                        width: 100%;
+                        background-color: var(--c-primary);
                     }
                 }
             }

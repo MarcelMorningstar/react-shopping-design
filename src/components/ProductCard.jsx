@@ -1,5 +1,6 @@
 import React from 'react';
 import Context from '../Layouts/Layout';
+import { Link } from "react-router-dom";
 import styled from 'styled-components';
 import cart from '../icons/Empty Cart 2.svg';
 
@@ -15,7 +16,7 @@ const Wrapper = styled.div`
   }
 `;
 
-const Card = styled.a`
+const Card = styled(Link)`
   display: block;
   padding: 16px;
   color: var(--c-black);
@@ -130,8 +131,8 @@ export default class ProductCard extends React.Component {
 
   render() {
     return (
-      <Wrapper >
-        <Card href={'/product/' + this.props.id}>
+      <Wrapper>
+        <Card to={'/product/' + this.props.id}>
           <Image src={this.props.image}>
             <OutOfStock inStock={this.props.inStock}>OUT OF STOCK</OutOfStock>
           </Image>

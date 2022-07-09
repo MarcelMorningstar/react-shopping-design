@@ -12,6 +12,7 @@ const GetProducts = gql`
       products {
         id
         name
+        brand
         gallery
         attributes {
           id
@@ -43,9 +44,9 @@ export default class Category extends React.Component {
       <section className='category'>
         <div className='wrapper'>
           <section className='products'>
-            <h1>{this.context.category}</h1>
+            <h1>{this.props.match.params.category}</h1>
 
-            <Query query={GetProducts} variables={{category: this.context.category}}>
+            <Query query={GetProducts} variables={{category: this.props.match.params.category}}>
               {({ data, loading, error }) => {
                 if (loading) return <Loading />;
                 if (error) return console.log('Something went wrong');
@@ -56,6 +57,7 @@ export default class Category extends React.Component {
                       key={product.id}
                       id={product.id}
                       name={product.name} 
+                      brand={product.brand}
                       image={product.gallery[0]}
                       attributes={product.attributes}
                       currency={product.prices[this.context.bag.currency].currency.symbol}

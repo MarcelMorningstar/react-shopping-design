@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link, NavLink } from "react-router-dom";
 import { gql } from "@apollo/client";
 import { Query } from "@apollo/client/react/components";
 import Attributes from '../widgets/Attributes';
@@ -119,15 +120,16 @@ export default class Navbar extends React.Component {
               
               return (
                 data.categories.map(({ name }) => 
-                  <a href='/' key={name}>
-                    <button
+                  <NavLink to={name} activeclassname='active' key={name}>
+                    {name}
+                    {/* <button
                       className={this.props.category === name ? 'active btn' : 'btn'}  
                       value={name} 
                       onClick={this.props.handleCategory} 
                     >
                       {name}
-                    </button>
-                  </a>
+                    </button> */}
+                  </NavLink>
                 )
               );
             }}
@@ -243,8 +245,8 @@ export default class Navbar extends React.Component {
                     }
                   </Query>
                   <div className='bag-bottons'>
-                    <a href='/cart' id='view'>VIEW BAG</a>
-                    <a href='/cart' id='pay'>CHECK OUT</a>
+                    <Link to='cart' id='view'>VIEW BAG</Link>
+                    <Link to='cart' id='pay'>CHECK OUT</Link>
                   </div>
               </div>
             </div>
