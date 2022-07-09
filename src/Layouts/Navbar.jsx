@@ -154,7 +154,7 @@ export default class Navbar extends React.Component {
                       <button
                         key={index}
                         value={index}
-                        className={this.props.bag.currency == index ? 'active' : ''}
+                        className={this.props.bag.currency === index.toString() ? 'active' : ''}
                         onClick={this.props.handleCurrency}
                       >
                         {symbol + ' ' + label}
