@@ -166,7 +166,7 @@ export default class Item extends React.Component {
             <Title id='brand' weight={600}>{this.props.brand}</Title>
             <Title id='name'>{this.props.name}</Title>
           </div>
-          <Attributes attributes={this.props.attributes} attribute={null} handleAttribute={this.handleAttribute} height={45} margin={24} />
+          <Attributes attributes={this.props.attributes} attribute={null} handleAttribute={this.handleAttribute} disabled={false} Sheight={32} Theight={45} />
           <div id='price'>
             <Label>PRICE:</Label>
             <Price>{this.props.currency + this.props.price.toFixed(2)}</Price>
@@ -221,7 +221,9 @@ export default class Item extends React.Component {
               )}
             </Context.Consumer>
           </div>
-          <Interweave content={this.props.description} />
+          <div>
+            <Interweave content={this.props.description} />
+          </div>
         </Info>
       </Wrapper>
     )

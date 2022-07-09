@@ -27,12 +27,13 @@ export default class Attributes extends React.Component {
               return (
                 <div key={attribute.id}>
                   <Label size={this.props.size} weight={this.props.weight}>{attribute.name}:</Label> 
-                  <Attribute height={this.props.height} margin={this.props.margin}>
+                  <Attribute height={this.props.Sheight} margin={this.props.margin}>
                     <Swatch 
                       items={attribute.items} 
                       type={attribute.id} 
                       id={this.props.attribute == null ? null : this.props.attribute[index].items.id} 
                       handleAttribute={this.props.handleAttribute} 
+                      disabled={this.props.disabled}
                     />
                   </Attribute>
                 </div>
@@ -42,12 +43,13 @@ export default class Attributes extends React.Component {
               return (
                 <div key={attribute.id}>
                   <Label size={this.props.size} weight={this.props.weight}>{attribute.name}:</Label> 
-                  <Attribute height={this.props.height} margin={this.props.margin}>
+                  <Attribute height={this.props.Theight} margin={this.props.margin}>
                     <Text 
                       items={attribute.items} 
                       type={attribute.id} 
                       id={this.props.attribute == null ? null : this.props.attribute[index].items.id} 
                       handleAttribute={this.props.handleAttribute} 
+                      disabled={this.props.disabled}
                     />
                   </Attribute>
                 </div>

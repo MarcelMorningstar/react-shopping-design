@@ -71,24 +71,6 @@ export default class Item extends React.Component {
     this.context.updateBag(1, this.props.price);
   }
 
-  handleAttribute = (type, id, value) => {
-    let attribute = this.props.attribute;
-    const newAttribute = {
-      "id": type,
-      "items": {
-        "id": id,
-        "value": value
-      }
-    };
-    const attributeIndex = attribute.findIndex(object => {
-      return object.id === type;
-    });
-
-    attribute[attributeIndex] = newAttribute;
-
-    this.context.updateItem(this.props.index, 0, attribute);
-  }
-
   render() {
     return (
       <Cart>
@@ -96,7 +78,7 @@ export default class Item extends React.Component {
           <Title weight={600}>{this.props.brand}</Title>
           <Title>{this.props.name}</Title>
           <Price>{this.props.currency + this.props.price}</Price>
-          <Attributes attributes={this.props.attributes} attribute={this.props.attribute} handleAttribute={this.handleAttribute} height={45} margin={24} />
+          <Attributes attributes={this.props.attributes} attribute={this.props.attribute} handleAttribute={null} disabled={true} Sheight={32} Theight={45} margin={24} />
         </div>
         <div>
           <QuantityChanger quantity={this.props.quantity} removeQuantity={this.removeQuantity} addQuantity={this.addQuantity} height={288} size={45} fontSize={32} />

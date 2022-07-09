@@ -21,11 +21,11 @@ export default class Navbar extends React.Component {
   }
 
   componentDidMount() {
-    document.addEventListener("mousedown", this.handleClickOutside);
+    window.addEventListener("mousedown", this.handleClickOutside);
   }
 
   componentWillUnmount() {
-    document.removeEventListener("mousedown", this.handleClickOutside);
+    window.removeEventListener("mousedown", this.handleClickOutside);
   }
 
   handleCurrencyDropdown = () => {
@@ -137,24 +137,10 @@ export default class Navbar extends React.Component {
                                   <Attributes 
                                     attributes={data.product.attributes} 
                                     attribute={item.product.attribute} 
-                                    handleAttribute={(type, id, value) => {
-                                      let attribute = item.product.attribute;
-                                      const newAttribute = {
-                                        "id": type,
-                                        "items": {
-                                          "id": id,
-                                          "value": value
-                                        }
-                                      };
-                                      const attributeIndex = attribute.findIndex(object => {
-                                        return object.id === type;
-                                      });
-
-                                      attribute[attributeIndex] = newAttribute;
-
-                                      this.props.updateItem(index, 0, attribute);
-                                    }} 
-                                    height={24} 
+                                    handleAttribute={null}
+                                    disabled={true} 
+                                    Sheight={20} 
+                                    Theight={24}
                                     margin={8} 
                                     size={14} 
                                     weight={400} 

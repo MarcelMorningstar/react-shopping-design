@@ -15,7 +15,7 @@ const Button = styled.button`
     background-color: ${props => props.color};
     outline: solid var(--c-black) 1px;
     border: none;
-    cursor: pointer;
+    cursor: ${props => props.disabled ? 'auto' : 'pointer'};
 
     &.swatch {
         aspect-ratio: 1 / 1
@@ -45,6 +45,7 @@ export default class Swatch extends React.Component {
                         color={item.value} 
                         className={this.state.active === item.id ? 'swatch active' : 'swatch'} 
                         onClick={() => { this.setState({ active: item.id }); this.props.handleAttribute(this.props.type, item.id, item.value); }}
+                        disabled={this.props.disabled}
                     />
                     )
                 }

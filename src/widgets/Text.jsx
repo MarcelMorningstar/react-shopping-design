@@ -16,13 +16,15 @@ const Button = styled.button`
     background-color: transparent;
     outline: solid var(--c-black) 1px;
     border: none;
-    cursor: pointer;
+    cursor: ${props => props.disabled ? 'auto' : 'pointer'};
 
     &.text {
         width: 100%;
         max-width: 81px;
 
-        &:hover, &.active {
+        ${props => props.disabled ? '' : '&:hover { color: var(--c-white); background-color: var(--c-black); }'}
+
+        &.active {
             color: var(--c-white);
             background-color: var(--c-black);
         }
@@ -46,6 +48,7 @@ export default class Text extends React.Component {
                             key={item.id}
                             className={this.state.active === item.id ? 'text active' : 'text'} 
                             onClick={() => { this.setState({ active: item.id }); this.props.handleAttribute(this.props.type, item.id, item.value); }}
+                            disabled={this.props.disabled}
                         >
                             {item.value}
                         </Button>  
