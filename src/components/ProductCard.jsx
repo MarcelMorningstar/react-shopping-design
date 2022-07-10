@@ -114,15 +114,27 @@ export default class ProductCard extends React.Component {
       }
     }
 
-    for (let i = 0; i < this.context.items.length; i++) {
-      if (this.context.items[i].id === item.id && !same) {
-        for (let j = 0; j < attributes.length; j++) {
-          if (attributes[j].items.id === this.context.items[i].product.attribute[j].items.id) {
-            same = true;
-            index = i;
-          } else {
-            same = false;
-            break;
+    if (item.product.attribute.length === 0) {
+      for (let i = 0; i < this.context.items.length; i++) {
+        if (this.context.items[i].id === item.id) {
+          same = true;
+          index = i;
+          break;
+        } else {
+          same = false;
+        }
+      }
+    } else {
+      for (let i = 0; i < this.context.items.length; i++) {
+        if (this.context.items[i].id === item.id && !same) {
+          for (let j = 0; j < item.product.attribute.length; j++) {
+            if (item.product.attribute[j].items.id === this.context.items[i].product.attribute[j].items.id) {
+              same = true;
+              index = i;
+            } else {
+              same = false;
+              break;
+            }
           }
         }
       }

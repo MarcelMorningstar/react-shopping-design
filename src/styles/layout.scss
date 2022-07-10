@@ -209,12 +209,11 @@ nav {
                                 > div:last-child {
                                     display: flex;
                                     align-items: center;
-                                    max-height: 145px;
                                     padding-right: 14px;
 
                                     img {
                                         width: 121px;
-                                        max-height: inherit;
+                                        max-height: 145px;
                                         object-fit: contain;
                                     }
                                 }

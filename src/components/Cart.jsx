@@ -60,14 +60,14 @@ export default class Item extends React.Component {
     if (this.props.quantity <= 1) {
       this.context.items.splice(this.props.index, 1);
     } else {
-      this.context.updateItem(this.props.index, -1, this.props.attribute);
+      this.context.updateItem(this.props.index, -1);
     }
 
     this.context.updateBag(-1, this.props.price);
   }
 
   addQuantity = () => {
-    this.context.updateItem(this.props.index, 1, this.props.attribute);
+    this.context.updateItem(this.props.index, 1);
     this.context.updateBag(1, this.props.price);
   }
 
@@ -81,7 +81,7 @@ export default class Item extends React.Component {
           <Attributes attributes={this.props.attributes} attribute={this.props.attribute} handleAttribute={null} disabled={true} Sheight={32} Theight={45} margin={24} />
         </div>
         <div>
-          <QuantityChanger quantity={this.props.quantity} removeQuantity={this.removeQuantity} addQuantity={this.addQuantity} height={288} size={45} fontSize={32} />
+          <QuantityChanger quantity={this.props.quantity} removeQuantity={this.removeQuantity} addQuantity={this.addQuantity} Qheight={288} size={45} fontSize={32} />
           <Carousel images={this.props.images} />
         </div>
       </Cart>
