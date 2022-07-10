@@ -19,6 +19,7 @@ const Gallery = styled.section`
 
 const Images = styled.div`
   overflow-y: overlay;
+  overflow-x: hidden;
   display: flex;
   flex-direction: column;
   row-gap: 30px;
@@ -108,6 +109,8 @@ const AddButton = styled.button`
 `;
 
 export default class Item extends React.Component {
+  static contextType = Context;
+
   constructor(props) {
     super(props)
     this.state = {
@@ -148,6 +151,57 @@ export default class Item extends React.Component {
     this.state.setAttribute(type, id, value);
   }
 
+  addProduct = () => {
+    let attributes = true;
+
+    for (let i = 0; i < this.state.attribute.length; i++) {
+      if (this.state.attribute[i].items.value === null) {
+        attributes = false;
+      }
+    }
+
+    if (attributes) {
+      let same = false;
+      let index;
+      let item = {
+        "id": this.props.id,
+        "price": this.props.price,
+        "prices": this.props.prices,
+        "quantity": 1,
+        "product": {
+          "id": this.props.id,
+          "attribute": this.state.attribute
+        }
+      }
+
+      for (let i = 0; i < this.context.items.length; i++) {
+        if (this.context.items[i].id === item.id && !same) {
+          for (let j = 0; j < item.product.attribute.length; j++) {
+            console.log(this.state.attribute[j]);
+            console.log(this.context.items[i].product.attribute[j]);
+            if (item.product.attribute[j].items.id === this.context.items[i].product.attribute[j].items.id) {
+              same = true;
+              index = i;
+            } else {
+              same = false;
+              break;
+            }
+          }
+        }
+      }
+
+      if (!same) {
+        this.context.addItem(item);
+      } else {
+        this.context.updateItem(index, item.quantity);
+      }
+
+      this.context.updateBag(item.quantity, item.price);
+    } else {
+      alert("choose attributes");
+    }
+  }
+
   render() {
     return (
       <Wrapper>
@@ -170,56 +224,10 @@ export default class Item extends React.Component {
           <div id='price'>
             <Label>PRICE:</Label>
             <Price>{this.props.currency + this.props.price.toFixed(2)}</Price>
-            <Context.Consumer>
-              {({ items, addItem, updateItem, updateBag }) => (
-                <AddButton 
-                  onClick={() => {
-                    let attributes = false;
-
-                    for (let i = 0; i < this.state.attribute.length; i++) {
-                      if (this.state.attribute[i].items.value === null) {
-                        attributes = true;
-                      }
-                    }
-
-                    if (!attributes) {
-                      let same = false;
-                      let index;
-                      const item = {
-                        "id": this.props.id,
-                        "price": this.props.price,
-                        "prices": this.props.prices,
-                        "quantity": 1,
-                        "product": {
-                          "id": this.props.id,
-                          "attribute": this.state.attribute
-                        }
-                      }
-
-                      for (let i = 0; i < items.length; i++) {
-                        if (items[i].id === item.id) {
-                          index = i;
-                          same = true;
-                        }
-                      }
-
-                      if (!same) {
-                        addItem(item);
-                      } else {
-                        updateItem(index, item.quantity, item.product.attribute);
-                      }
-
-                      updateBag(item.quantity, item.price);
-                    } else {
-                      alert("choose attributes");
-                    }
-                  }}
-                  disabled={!this.props.inStock}
-                >
-                  {this.props.inStock ? 'ADD TO CART' : 'OUT OF STOCK'}
-                </AddButton>
-              )}
-            </Context.Consumer>
+            <AddButton 
+              onClick={this.addProduct}
+              disabled={!this.props.inStock}
+            >{this.props.inStock ? 'ADD TO CART' : 'OUT OF STOCK'}</AddButton>
           </div>
           <div>
             <Interweave content={this.props.description} />

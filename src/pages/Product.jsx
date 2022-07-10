@@ -6,8 +6,6 @@ import Item from '../components/Product';
 import Loading from '../Layouts/Loading';
 
 export default class Product extends React.Component {
-  static contextType = Context;
-
   render() {
     return (
       <Query query={GetProduct} variables={{id: this.props.match.params.id}}>
@@ -16,18 +14,22 @@ export default class Product extends React.Component {
           if (error) return console.log('Something went wrong');
 
           return (
-            <Item 
-              id={data.product.id}
-              brand={data.product.brand}
-              name={data.product.name}
-              images={data.product.gallery}
-              attributes={data.product.attributes}
-              currency={data.product.prices[this.context.bag.currency].currency.symbol}
-              prices={data.product.prices}
-              price={data.product.prices[this.context.bag.currency].amount}
-              description={data.product.description}
-              inStock={data.product.inStock}
-            />
+            <Context.Consumer>
+              {({ bag }) => (
+                <Item 
+                  id={data.product.id}
+                  brand={data.product.brand}
+                  name={data.product.name}
+                  images={data.product.gallery}
+                  attributes={data.product.attributes}
+                  currency={data.product.prices[bag.currency].currency.symbol}
+                  prices={data.product.prices}
+                  price={data.product.prices[bag.currency].amount}
+                  description={data.product.description}
+                  inStock={data.product.inStock}
+                />
+              )}
+            </Context.Consumer>
           );
         }}
       </Query>

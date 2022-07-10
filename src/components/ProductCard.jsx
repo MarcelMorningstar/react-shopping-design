@@ -103,7 +103,7 @@ export default class ProductCard extends React.Component {
       })
     }
 
-    const item = {
+    let item = {
       "id": this.props.id,
       "price": this.props.price,
       "prices": this.props.prices,
@@ -115,16 +115,23 @@ export default class ProductCard extends React.Component {
     }
 
     for (let i = 0; i < this.context.items.length; i++) {
-      if (this.context.items[i].id === this.props.id) {
-        index = i;
-        same = true;
+      if (this.context.items[i].id === item.id && !same) {
+        for (let j = 0; j < attributes.length; j++) {
+          if (attributes[j].items.id === this.context.items[i].product.attribute[j].items.id) {
+            same = true;
+            index = i;
+          } else {
+            same = false;
+            break;
+          }
+        }
       }
     }
 
     if (!same) {
       this.context.addItem(item);
     } else {
-      this.context.updateItem(index, 1, item.product.attribute);
+      this.context.updateItem(index, item.quantity);
     }
 
     this.context.updateBag(item.quantity, item.price);

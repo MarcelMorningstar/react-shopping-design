@@ -23,19 +23,12 @@ export class Layout extends React.Component {
         "total": 0
       },
       addItem: (item) => {
-        this.setState(prevState => ({
-          ...prevState,
-          items: [
-            ...prevState.items,
-            item
-          ]
-        }));
+        this.setState({ items: JSON.parse(JSON.stringify([...this.state.items, item])) })
       },
-      updateItem: (index, quantity, attribute) => {        
+      updateItem: (index, quantity) => {        
         let items = this.state.items;
         
         items[index].quantity += quantity;
-        items[index].product.attribute = attribute;
 
         this.setState({ items: items });
       },

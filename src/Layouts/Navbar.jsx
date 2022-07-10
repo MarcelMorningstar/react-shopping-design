@@ -50,18 +50,18 @@ export default class Navbar extends React.Component {
     }
   }
 
-  removeQuantity = (id, price, attribute) => {
+  removeQuantity = (id, price) => {
     if (this.props.items[id].quantity <= 1) {
       this.props.items.splice(id, 1);
     } else {
-      this.props.updateItem(id, -1, attribute);
+      this.props.updateItem(id, -1);
     }
 
     this.props.updateBag(-1, price);
   }
 
-  addQuantity = (id, price, attribute) => {
-    this.props.updateItem(id, 1, attribute);
+  addQuantity = (id, price) => {
+    this.props.updateItem(id, 1);
     this.props.updateBag(1, price);
   }
 
@@ -149,7 +149,7 @@ export default class Navbar extends React.Component {
                               <div>
                                 <QuantityChanger 
                                   quantity={this.props.items[index].quantity} 
-                                  removeQuantity={() => this.removeQuantity(index, data.product.prices[this.props.bag.currency].amount, item.product.attribute)} addQuantity={() => this.addQuantity(index, data.product.prices[this.props.bag.currency].amount, item.product.attribute)} 
+                                  removeQuantity={() => this.removeQuantity(index, data.product.prices[this.props.bag.currency].amount)} addQuantity={() => this.addQuantity(index, data.product.prices[this.props.bag.currency].amount)} 
                                   Qheight={145} 
                                   size={25} 
                                   fontSize={16} 
