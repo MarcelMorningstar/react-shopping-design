@@ -11,7 +11,7 @@ const Wrapper = styled.div`
 const Image = styled.img`
     width: 256px;
     height: 288px;
-    object-fit: cover;
+    object-fit: contain;
 `;
 
 const ButtonGroup = styled.div`

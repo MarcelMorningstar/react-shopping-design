@@ -118,69 +118,69 @@ export default class Navbar extends React.Component {
               <img src={cart} alt="cart" width={27} />
             </span>
             <div id='bag'>
-                <div className='bag'>
-                  <h1><b>My Bag, </b>{this.props.bag.quantity} items</h1>
-                  <div className='products'>
-                    {
-                      this.props.items.map((item, index) => 
-                        <Query key={index} query={GetProduct} variables={{id: item.product.id}}>
-                          {({ data, loading, error }) => {
-                            if (loading) return;
-                            if (error) return console.log('Something went wrong');
-      
-                            return (
-                              <div className='product'>
-                                <div>
-                                  <h2>{data.product.brand}</h2>
-                                  <h2>{data.product.name}</h2>
-                                  <span>{data.product.prices[this.props.bag.currency].currency.symbol + data.product.prices[this.props.bag.currency].amount.toFixed(2)}</span>
-                                  <Attributes 
-                                    attributes={data.product.attributes} 
-                                    attribute={item.product.attribute} 
-                                    handleAttribute={null}
-                                    disabled={true} 
-                                    Sheight={20} 
-                                    Theight={24}
-                                    margin={8} 
-                                    size={14} 
-                                    weight={400} 
-                                  />
-                                </div>
-                                <div>
-                                  <QuantityChanger 
-                                    quantity={this.props.items[index].quantity} 
-                                    removeQuantity={() => this.removeQuantity(index, data.product.prices[this.props.bag.currency].amount, item.product.attribute)} addQuantity={() => this.addQuantity(index, data.product.prices[this.props.bag.currency].amount, item.product.attribute)} 
-                                    height={145} 
-                                    size={25} 
-                                    fontSize={16} 
-                                  />
-                                  <img src={data.product.gallery[0]} alt="" />
-                                </div>
+              <div className='bag'>
+                <h1><b>My Bag, </b>{this.props.bag.quantity} items</h1>
+                <div className='products'>
+                  {
+                    this.props.items.map((item, index) => 
+                      <Query key={index} query={GetProduct} variables={{id: item.product.id}}>
+                        {({ data, loading, error }) => {
+                          if (loading) return;
+                          if (error) return console.log('Something went wrong');
+    
+                          return (
+                            <div className='product'>
+                              <div>
+                                <h2>{data.product.brand}</h2>
+                                <h2>{data.product.name}</h2>
+                                <span>{data.product.prices[this.props.bag.currency].currency.symbol + data.product.prices[this.props.bag.currency].amount.toFixed(2)}</span>
+                                <Attributes 
+                                  attributes={data.product.attributes} 
+                                  attribute={item.product.attribute} 
+                                  handleAttribute={null}
+                                  disabled={true} 
+                                  Sheight={20} 
+                                  Theight={24}
+                                  margin={8} 
+                                  size={14} 
+                                  weight={400} 
+                                />
                               </div>
-                            );
-                          }}
-                        </Query>
-                      )
-                    }
-                  </div>
-                  <Query query={GetCurrencies}>
-                    {({ data, loading, error }) => {
-                        if (loading) return;
-                        if (error) return console.log('Something went wrong');
+                              <div>
+                                <QuantityChanger 
+                                  quantity={this.props.items[index].quantity} 
+                                  removeQuantity={() => this.removeQuantity(index, data.product.prices[this.props.bag.currency].amount, item.product.attribute)} addQuantity={() => this.addQuantity(index, data.product.prices[this.props.bag.currency].amount, item.product.attribute)} 
+                                  Qheight={145} 
+                                  size={25} 
+                                  fontSize={16} 
+                                />
+                                <img src={data.product.gallery[0]} alt="" />
+                              </div>
+                            </div>
+                          );
+                        }}
+                      </Query>
+                    )
+                  }
+                </div>
+                <Query query={GetCurrencies}>
+                  {({ data, loading, error }) => {
+                      if (loading) return;
+                      if (error) return console.log('Something went wrong');
 
-                        return (
-                          <div className='cost'>
-                            <span>Total</span>
-                            <span>{data.currencies[this.props.bag.currency].symbol + this.props.bag.total.toFixed(2)}</span>
-                          </div>
-                        );
-                      }
+                      return (
+                        <div className='cost'>
+                          <span>Total</span>
+                          <span>{data.currencies[this.props.bag.currency].symbol + this.props.bag.total.toFixed(2)}</span>
+                        </div>
+                      );
                     }
-                  </Query>
-                  <div className='bag-bottons'>
-                    <Link to='cart' id='view'>VIEW BAG</Link>
-                    <Link to='cart' id='pay'>CHECK OUT</Link>
-                  </div>
+                  }
+                </Query>
+                <div className='bag-bottons'>
+                  <Link to='cart' id='view' onClick={() => this.setState({ cartOpen: false })}>VIEW BAG</Link>
+                  <Link to='cart' id='pay' onClick={() => this.setState({ cartOpen: false })}>CHECK OUT</Link>
+                </div>
               </div>
             </div>
           </div>

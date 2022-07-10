@@ -7,9 +7,8 @@
 
         .products {
             display: grid;
-            grid-template-columns: repeat(3, minmax(210px, 382px));
+            grid-template-columns: repeat(3, minmax(210px, 340px));
             justify-content: center;
-            width: max(80%, 400px);
             column-gap: 32px;
             row-gap: 32px;
 

@@ -17,6 +17,7 @@ const Wrapper = styled.div`
 `;
 
 const Card = styled(Link)`
+  height: calc(100% - 32px);
   display: block;
   padding: 16px;
   color: var(--c-black);

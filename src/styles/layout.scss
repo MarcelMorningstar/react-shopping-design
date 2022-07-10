@@ -94,7 +94,7 @@ nav {
             #cart {
                 position: relative;
 
-                span {
+                > span {
                     position: relative;
                     cursor: pointer;
 
@@ -209,11 +209,13 @@ nav {
                                 > div:last-child {
                                     display: flex;
                                     align-items: center;
+                                    max-height: 145px;
                                     padding-right: 14px;
 
                                     img {
                                         width: 121px;
-                                        aspect-ratio: 1 / 1.2;
+                                        max-height: inherit;
+                                        object-fit: contain;
                                     }
                                 }
                             }

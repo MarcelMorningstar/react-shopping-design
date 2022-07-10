@@ -5,7 +5,7 @@ const Quantity = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: ${props => props.height + 'px'};
+  height: ${props => props.Qheight + 'px'};
   margin: 0 12px;
 `;
 
@@ -28,7 +28,7 @@ const QuantityLabel = styled.span`
 export default class QuantityChanger extends React.Component {
     render() {
         return (
-            <Quantity height={this.props.height}>
+            <Quantity Qheight={this.props.Qheight}>
                 <QuantityButton onClick={this.props.addQuantity} size={this.props.size} fontSize={this.props.fontSize}>+</QuantityButton>
                 <QuantityLabel>{this.props.quantity}</QuantityLabel>
                 <QuantityButton onClick={this.props.removeQuantity} size={this.props.size} fontSize={this.props.fontSize}>-</QuantityButton>
